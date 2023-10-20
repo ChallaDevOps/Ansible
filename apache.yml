@@ -1,0 +1,20 @@
+---
+- name: Deploying Apache and creating readme file along with enabling webservers
+  become: yes
+  hosts: webservers
+  tasks:
+   - name: Apache2 installation
+     apt:
+       name: apache2
+       update_cache: yes
+       state: present
+   - name: enable apache2
+     service: 
+       name: apache2
+       state: started
+       enabled: true
+   - name: create a readme file
+     copy: 
+      dest: "/var/www/html/index.html"
+        Bye
+      mode: 0444
