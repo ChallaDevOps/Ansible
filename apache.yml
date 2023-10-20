@@ -14,7 +14,7 @@
        state: started
        enabled: true
    - name: create a readme file
-     copy: 
+     copy:
+      src: "/home/ansible/Ansible/sample.html" 
       dest: "/var/www/html/index.html"
-        Bye
       mode: 0444
