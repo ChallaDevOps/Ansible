@@ -13,8 +13,45 @@
        name: apache2
        state: started
        enabled: true
-   - name: create a readme file
+   - name: PHP packaages instatlling
+     apt:
+       name:
+        - php
+        - libapache2-mod-php
+        - php-mysql
+   - name: copying content of file
      copy:
       src: "/home/ansible/Ansible/sample.html" 
       dest: "/var/www/html/index.html"
       mode: 0444
+   - name: Creating a directory
+     file: 
+       path: "/home/ansible/html"
+       state: directory
+   - name: Creating a readme file
+     copy:
+       dest: "/home/ansible/html/readme"
+       content: |
+        Welcome to DevOps
+        Good to see you as learning Ansible
+   - name: Downloding the html project from s3
+     get_url: 
+       url: https://s3.console.aws.amazon.com/s3/object/naresh-html-projects?region=ap-south-1&prefix=registrationpageofcustomer.html
+       dest: /home/ansible/html/
+   - name: downloading thw hrml from s3 to default deploying page
+     get_url: 
+       url: https://s3.console.aws.amazon.com/s3/object/naresh-html-projects?region=ap-south-1&prefix=registrationpageofcustomer.html
+       dest : "/var/www/html/"
+       mode: 0444
+   - name: creating a user 
+     user: 
+       name: html
+       password: html
+       state: present
+   - name: changing ownership of HTML project files
+     file:
+        path: "/home/ansible/html/readme"
+        owner: html
+        group: html
+        mode: '500'
+        state: file    
