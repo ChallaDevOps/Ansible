@@ -1,6 +1,6 @@
 #172.31.34.79
 #localhost
-[webserver]
+[webservers]
 172.31.34.79
 
 [dbserver]
