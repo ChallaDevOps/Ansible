@@ -1,0 +1,76 @@
+---
+- name: Deploying Apache and creating readme file along with enabling webservers
+  become: yes
+  hosts: all
+  vars:
+    web_package: apache2
+    test_var1: just for testing
+    app_src_path: /home/ansible/Ansible/sample.html
+    app_dest_path: /var/www/html/index.html
+    src_url: https://s3.console.aws.amazon.com/s3/object/naresh-html-projects?region=ap-south-1&prefix=registrationpageofcustomer.html
+    useradd: html
+  tasks:
+   - name: Display web_package
+     debug: 
+       var: web_package
+   - name: Checking variables
+     debug: 
+       var: test_var1
+   - name: Display Second variable
+     debug: 
+       var: test_var2
+   - name: Checking app source path
+     debug: 
+       var: app_src_path
+   - name: Apache2 installation
+     apt:
+       name: "{{ web_package }}"
+       update_cache: yes
+       state: present
+   - name: enable apache2
+     service: 
+       name: "{{ web_package }}"
+       state: started
+       enabled: true
+   - name: PHP packaages instatlling
+     apt:
+       name:
+        - php
+        - libapache2-mod-php
+        - php-mysql
+   - name: copying content of file
+     copy:
+      src: "{{ app_src_path }}" 
+      dest: "{{ app_dest_path }}"
+      mode: 0444
+   - name: Creating a directory
+     file: 
+       path: "/home/ansible/html"
+       state: directory
+   - name: Creating a readme file
+     copy:
+       dest: "/home/ansible/html/readme"
+       content: |
+        Welcome to DevOps
+        Good to see you as learning Ansible
+   - name: Downloding the html project from s3
+     get_url: 
+       url: "{{ src_url}}"
+       dest: /home/ansible/html/
+   - name: downloading thw hrml from s3 to default deploying page
+     get_url: 
+       url: https://s3.console.aws.amazon.com/s3/object/naresh-html-projects?region=ap-south-1&prefix=registrationpageofcustomer.html
+       dest : "/var/www/html/"
+       mode: 0444
+   - name: creating a user 
+     user: 
+       name: "{{useradd}}"
+       password: "{{useradd}}"
+       state: present
+   - name: changing ownership of HTML project files
+     file:
+        path: "/home/ansible/html/readme"
+        owner: "{{useradd}}"
+        group: "{{useradd}}"
+        mode: '500'
+        state: file 

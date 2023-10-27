@@ -1,0 +1,13 @@
+all:
+ hosts:
+   172.31.2.209:
+   localhost:
+ children:
+   webservers:
+     hosts:
+       web1.com:
+       web2.com:
+   dbservers:
+     hosts:
+       db1.com:
+       db2.com:

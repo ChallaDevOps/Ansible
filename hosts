@@ -1,17 +1,24 @@
-#172.31.34.79
-#localhost
-[webserver]
-172.31.34.79
-
-[dbserver]
-172.31.34.79
-
-[appserver]
-172.31.34.79
-
-[local]
 localhost
 
-[centos]
-172.31.29.133
+172.31.2.209 test_var1=from-inventory
+#[webservers]
+#172.31.34.79 test_var1=from-inventory
 
+#[dbserver]
+#172.31.34.79
+
+#[appserver]
+#172.31.34.79
+
+#[local]
+#localhost
+
+#[centos]
+#172.31.29.133
+[webservers]
+web1.com
+web2.com
+
+[dbservers]
+db1.com
+db2.com
