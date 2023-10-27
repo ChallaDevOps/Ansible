@@ -1,0 +1,10 @@
+localhost
+172.31.2.209
+[webservers]
+Web1.com
+Web2.com
+
+[dbservers]
+Db1.com
+Db2.com
+
