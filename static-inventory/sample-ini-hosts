@@ -1,5 +1,10 @@
 localhost
 172.31.2.209
+
+[adi]
+172.31.2.209
+localhost
+
 [webservers]
 Web1.com
 Web2.com

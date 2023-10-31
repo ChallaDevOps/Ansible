@@ -1,0 +1,16 @@
+---
+- name: creating user using varible
+  hosts: all
+  become: yes
+  vars:
+    user: adi
+  tasks:
+    - name: fail the execution when the distrinution is not ubuntu
+      fail:
+        msg: "This playbook will work only on ubuntu instances. Support for other OS will be soon"
+      when: ansible_distribution != "Ubuntu"
+    - name: create a user {{user}}
+      user:
+        name: "{{user}}"
+
+
