@@ -1,0 +1,8 @@
+---
+java_package: openjdk-11-jdk
+tomcat_download_url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.82.tar.gz
+tomcat_download_dest: /tmp/apache-tomcat-9.0.82.tar.gz
+tomcat_group: tomcat
+tomcat_user: tomcat
+tomcat_home_dir: /opt/tomcat
+tomcat_shell: /bin/false
