@@ -7,3 +7,11 @@ tomcat_user: tomcat
 tomcat_home_dir: /opt/tomcat
 tomcat_shell: /bin/false
 tomcat_check_dir: /opt/tomcat/conf
+ansible_python_interpreter: /usr/bin/python3
+tomcat_check_dir: /opt/tomcat/conf
+tomcat_directories_for_group_permissions:
+  - /opt/tomcat/conf
+  - /opt/tomcat/webapps
+  - /opt/tomcat/work
+  - /opt/tomcat/temp
+  - /opt/tomcat/logs
