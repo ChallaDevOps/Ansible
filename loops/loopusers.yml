@@ -1,0 +1,17 @@
+---
+- name: creating a users using loop
+  become: yes
+  hosts: node
+  tasks:
+    - name: Creating Users
+      user:
+        name: " {{ item.name }}"
+        state: present
+        groups: "{{ item.groups }}"
+      loop:
+        - name: NTR
+          groups: wheel
+        - name: NBK
+          groups: users
+        - name: pspk
+          groups: users
