@@ -1,0 +1,9 @@
+---
+- name: Test register variable output of one word
+  hosts: all
+  tasks:
+    - shell: cat /etc/passwd
+      register: passwd_contents
+    - debug:
+        msg: echo "passwd contains user adi"
+      when: passwd_contents.stdout.find('add') != -1

@@ -1,0 +1,14 @@
+---
+- name: Demo on How the register keywords works
+  hosts: all
+  become: yes
+  tasks:
+    - name: Show loop register
+      shell: "echo {{item }}"
+      loop:
+        - "one"
+        - "two"
+      register: echovar
+    - name: show register results
+      debug:
+        var: echovar

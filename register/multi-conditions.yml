@@ -1,0 +1,13 @@
+---
+- name: Using multiple conditions
+  hosts: a;;
+  tasks:
+    - package:
+        name: apache2
+        state: removed
+      when: >
+        ( ansible_distribution == "Redhat" and
+         ansible_memfree_mb > 512 )
+        or
+        ( ansible_distribution == "CentOS" and
+         ansible_memfree_mb > 1024 )

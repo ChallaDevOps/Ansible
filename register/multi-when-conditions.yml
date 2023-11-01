@@ -1,0 +1,11 @@
+---
+- name: Using multiple when conditions
+  hosts: all
+  tasks:
+    - package:
+        name: apache2
+        state: present
+      when: 
+        - ansible_distribution == "Ubuntu"
+        - ansible_memfree_mb > 1
+          

@@ -1,0 +1,14 @@
+---
+- name: Demo on When Condition
+  hosts: all
+  vars:
+    supported_distros:
+      - CentOS
+      - Fedora
+      - RedHat
+  tasks:
+    - name: Install the packages of APT family Specific packages
+      apt:
+        name: apache2
+        state: present
+      when: ansible_distribution in supported_distros

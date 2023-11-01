@@ -1,0 +1,13 @@
+---
+- name: restart sshd only if the crond is running
+  hosts: all
+  tasks:
+    - name: Get the crond service status
+      command: /usr/bin/systemctl is-active crond
+      ignore_errors: yes
+      register: result
+    - name: restart sshd based in crond status
+      service: 
+        name: sshd
+        status: restarted
+      when: result.rd == 0
