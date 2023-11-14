@@ -1,0 +1,4 @@
+---
+#defaults file for hosts
+system_manager: naresh@ansible.com
+

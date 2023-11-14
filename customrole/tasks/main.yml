@@ -1,0 +1,9 @@
+---
+#Tasks file for copying a file
+- name: copy /ansible/Ansible/hosts file
+  templates:
+    src: templates/main.j2
+    dest: /etc/role-demo
+    owner: root
+    group: root
+    mode: 0444

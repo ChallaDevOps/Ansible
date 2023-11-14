@@ -1,0 +1,9 @@
+---
+- name: Use role example playbook
+  hosts: all
+  user: ansible
+  become: yes
+ 
+  roles: 
+    - role: rolename
+      system_manager: challadevops@gmai.com
